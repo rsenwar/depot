@@ -1,2 +1,0 @@
-# depot
-Bus Transactions Service
