@@ -13,3 +13,5 @@ BOOK_SUCCESS_STATUS = {'to deliver', 'cancelled', 'to refund', 'refundqueued',
 REFUND_QUEUE_STATUS = {'to refund', 'refundqueued'}
 PUSH_TO_KAFKA_STATUSES = {"to deliver", "to cancel", "to refund", "cancelled", "refundqueued",
                           "refunded", "noshow"}
+IBIBO_BUS_CANCELLATION_CHARGES = '100'
+MYBOOKING_TOKEN = 'Zx4T'

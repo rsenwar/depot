@@ -16,9 +16,9 @@ import time
 
 from django.conf import settings
 
-from apps.goibibo.models import BusConfigParam
+from apps.goibibo.models import busConfigParam as ConfigParam
 
-__all__ = ['hotels_config_params', ]
+__all__ = ['bus_config_params', ]
 logger = logging.getLogger(__name__)
 
 ENVIRONMENT_TYPE_MAP = {
@@ -30,10 +30,10 @@ ENVIRONMENT_TYPE_MAP = {
 NEW_FETCH_PERIOD = 1 * 60
 
 
-class HotelDbConfigParams(object):
+class BusDbConfigParams(object):
     """Hotel DB Configs."""
 
-    _hotel_config_params = {}
+    _bus_config_params = {}
     _last_refresh_time = None
     _fetch_new = True
 
@@ -48,7 +48,7 @@ class HotelDbConfigParams(object):
     def _should_refresh(self):
         """Check the condition to refresh the data."""
         current_timestamp = time.time()
-        if not self._hotel_config_params:
+        if not self._bus_config_params:
             val = True
         elif not self._last_refresh_time:
             val = True
@@ -64,7 +64,7 @@ class HotelDbConfigParams(object):
             self._fetch_new = True
             self._fetch_config_params()
 
-        config_params = self._hotel_config_params
+        config_params = self._bus_config_params
         return config_params.get(item, default_value)
 
     @staticmethod
@@ -72,13 +72,13 @@ class HotelDbConfigParams(object):
         """Fetch config params."""
         config_params = {}
         try:
-            config_params = HotelDbConfigParams._hotel_config_params
-            if HotelDbConfigParams._fetch_new:
-                config_params = HotelDbConfigParams._fetch_config_params_from_db()
+            config_params = BusDbConfigParams._bus_config_params
+            if BusDbConfigParams._fetch_new:
+                config_params = BusDbConfigParams._fetch_config_params_from_db()
                 if config_params:
-                    HotelDbConfigParams._hotel_config_params = config_params
-                    HotelDbConfigParams._last_refresh_time = time.time()
-                    HotelDbConfigParams._fetch_new = False
+                    BusDbConfigParams._hotel_config_params = config_params
+                    BusDbConfigParams._last_refresh_time = time.time()
+                    BusDbConfigParams._fetch_new = False
 
         except Exception as ex:
             logger.exception("%s", str(ex))
@@ -115,4 +115,4 @@ class HotelDbConfigParams(object):
         return config_params
 
 
-hotels_config_params = HotelDbConfigParams()
+bus_config_params = BusDbConfigParams()
