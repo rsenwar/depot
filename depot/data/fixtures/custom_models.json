@@ -1,0 +1,344 @@
+[
+  {
+    "fields": {
+      "domain": "example.com",
+      "name": "example.com"
+    },
+    "model": "goibibo.customsite",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "domain": "sonu.goibibo.com",
+      "name": "sonu.goibibo.com"
+    },
+    "model": "goibibo.customsite",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "domain": "sonu.goibibo.sg",
+      "name": "sonu.goibibo.sg"
+    },
+    "model": "goibibo.customsite",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "Hotel_Refund",
+      "permissions": []
+    },
+    "model": "auth.group",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "HOTEL_AMMEND_BOOKING",
+      "permissions": []
+    },
+    "model": "auth.group",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "username": "sonu.singh",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2014-10-14T03:54:57",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$10000$V11bMC4vWUZ8$Jt9BagRE/FZM6PAMKWOV2CH327FKZeCOtauwbq+/17s=",
+      "email": "sonu.singh@ibibogroup.com",
+      "date_joined": "2014-07-08T13:22:18"
+    },
+    "model": "goibibo.user",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "username": "sonu",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2015-12-02T14:11:00",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$aVC6MHVlDkBQ$8jATUrafJgL6Yd8T0tkdSIhQa2hi6u+BiUiHruwL+Tw=",
+      "email": "sonu.singh@ibibogroup.com",
+      "date_joined": "2014-11-07T15:36:12"
+    },
+    "model": "goibibo.user",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "username": "sonusingh",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2015-06-19T17:54:19",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$9Pwy3BjYmKqS$AAM2OsK3Z/GkKeEWAMy08nb866C7BERbfX5ApWsrpdk=",
+      "email": "sonu.singh@goibibo.com",
+      "date_joined": "2015-06-19T17:48:34"
+    },
+    "model": "goibibo.user",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "username": "singh",
+      "first_name": "Sonu",
+      "last_name": "Singh",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2017-07-24T18:39:13",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$rSbIv0ADeG6q$XnvHd1YbP/KlmKebxSTj+c/Ytl4h17RXgYSfkzzpJ4A=",
+      "email": "sonu.singh@goibibo.com",
+      "date_joined": "2015-06-23T19:11:07"
+    },
+    "model": "goibibo.user",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "username": "sonu@gmail.com",
+      "first_name": "",
+      "last_name": "",
+      "is_active": false,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2016-09-24T09:54:16",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$B59gklvZ1Zsf$Fp6cik/blzOMnFWWudMYpUV8XfAcamBKLr/hz1pg1dU=",
+      "email": "sonu@gmail.com",
+      "date_joined": "2016-09-24T09:54:16"
+    },
+    "model": "goibibo.user",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "username": "sonu1@gmail.com",
+      "first_name": "",
+      "last_name": "",
+      "is_active": false,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2016-09-24T09:54:16",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$B59gklvZ1Zsf$Fp6cik/blzOMnFWWudMYpUV8XfAcamBKLr/hz1pg1dU=",
+      "email": "sonu1@gmail.com",
+      "date_joined": "2016-09-24T09:54:16"
+    },
+    "model": "goibibo.user",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "username": "ujjwal",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwal.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "username": "ujjwa",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwa.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "username": "ujjwa",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwa.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "username": "ujjwa",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwa.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "username": "ujjwa",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwa.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "username": "ujjwa",
+      "first_name": "Ujjwal",
+      "last_name": "Tak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2018-05-09T19:14:29",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$iWsP7Fef1ME5$eFYjba9ZWMfIMouh2Wgeqj2kGmFGWIoyvLV/mmZumsE=",
+      "email": "ujjwa.tak@go-mmt.com",
+      "date_joined": "2017-08-02T12:24:21"
+    },
+    "model": "goibibo.user",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "username": "ujjwal",
+      "first_name": "Hare",
+      "last_name": "Pathak",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2017-08-30T01:17:09",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$15000$78uIitCc3KBn$wIh9VV3agQQZ1WlP7OsI4Ss/5iGJt/7/xc2sRR/UBro=",
+      "email": "hare.pathak@go-mmt.com",
+      "date_joined": "2017-08-30T01:17:09"
+    },
+    "model": "goibibo.user",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "geocoordinate": null,
+      "pincode": 122001,
+      "email_unique": null,
+      "guid": null,
+      "city": "Gurgaon",
+      "mobile_link_user_id": 0,
+      "usertitle": "Mr",
+      "salesrep": null,
+      "state": "Haryana",
+      "email": "sonu.singh@goibibo.com",
+      "optin_status": true,
+      "fax": null,
+      "firstname": "Sonu",
+      "middlename": "",
+      "lastname": "Singh",
+      "pancard": null,
+      "credits_id": 1,
+      "agent": false,
+      "address": "305, Raheja, Sector 31",
+      "password": "",
+      "name": "",
+      "link_user": 4,
+      "mobile": "9980067570",
+      "email_verified": true,
+      "dob": "08/09/1991",
+      "image_url": "",
+      "mobile_verified": true,
+      "user": 4
+    },
+    "model": "goibibo.customuserprofile",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "geocoordinate": null,
+      "pincode": 122002,
+      "email_unique": null,
+      "guid": null,
+      "city": "Gurgaon",
+      "mobile_link_user_id": 0,
+      "usertitle": "Mr",
+      "salesrep": null,
+      "state": "Haryana",
+      "email": "hare.pathak@go-mmt.com",
+      "optin_status": true,
+      "fax": null,
+      "firstname": "Hare",
+      "middlename": "Ram",
+      "lastname": "Pathak",
+      "pancard": null,
+      "credits_id": 2,
+      "agent": false,
+      "address": "Delhi",
+      "password": "",
+      "name": "",
+      "link_user": 13,
+      "mobile": "9971996579",
+      "email_verified": true,
+      "dob": "05/11/1980",
+      "image_url": "",
+      "mobile_verified": true,
+      "user": 13
+    },
+    "model": "goibibo.customuserprofile",
+    "pk": 2
+  }
+]

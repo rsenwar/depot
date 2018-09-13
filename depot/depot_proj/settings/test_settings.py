@@ -21,9 +21,9 @@ DATABASE_ROUTERS = ['depot_proj.db_router.ApplicationTestRouter']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(DB_FILES_LOCATION, 'travelibibo.sqlite3'),
+        'NAME': os.path.join(DB_FILES_LOCATION, 'depot.sqlite3'),
         'TEST': {
-            'NAME': os.path.join(DB_FILES_LOCATION, 'travelibibo.sqlite3'),
+            'NAME': os.path.join(DB_FILES_LOCATION, 'depot.sqlite3'),
         }
     },
     'goibibo_master': {

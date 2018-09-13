@@ -15,10 +15,9 @@ DB_FILES_LOCATION = settings.PROJECT_ROOT + '/data/'
 sys.path.append(os.path.dirname(__file__))
 
 
-#@pytest.fixture(scope='session')
+@pytest.fixture(scope='session')
 def django_db_setup(django_db_keepdb, django_db_blocker):
-    pass
-    '''
+    import pdb; pdb.set_trace()
     from pytest_django.fixtures import _disable_native_migrations
     _disable_native_migrations()
     settings.DATABASES['default'] = {
@@ -35,9 +34,8 @@ def django_db_setup(django_db_keepdb, django_db_blocker):
     }
     with django_db_blocker.unblock():
         call_command('loaddata', '--database', 'default', 'django_data.json')
-        call_command('loaddata', '--database', 'goibibo_master', 'custom_models.json',
-                     'custom_content_types.json', 'bus_models.json')
-    '''
+        call_command('loaddata', '--database', 'goibibo_master', 'custom_models.json')
+                     # 'custom_content_types.json', 'bus_models.json')
 
 
 
