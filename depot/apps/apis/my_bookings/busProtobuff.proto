@@ -1,0 +1,87 @@
+syntax = "proto3";
+package models;
+
+message BusMyBookingApiData{
+	bool api_status = 1 ;// true for sucess and false for faliure
+	string api_error = 2; // empty for no error and non empty for an error
+	repeated BusMyBookingData data = 3 ;// main data 
+}
+
+/*
+datetime format = 2002-12-25T00:00:00-06:39 ~ iso-8601 format ~ http://apiux.com/2013/03/20/5-laws-api-dates-and-times/
+please stick to this date time format , no other date format will be entertained .
+*/
+
+message BusMyBookingData{
+	string status = 1 ;//  status of transaction - new , booking confirmed , cancelled etc.
+	string payment_id = 2 ;//  payment id like GOBUSANDda30e1488542424
+	string pnr = 3 ;//  bus operator pnr number 
+	string db_primary_id = 4 ;// db primary id is the incremental collumn value in db
+	string booking_refrence = 5 ;// booking reference is goibibo pnr for bus booking 
+	string user_id = 6 ;// guid or unique id which is linked with one account 
+	string travell_start_date_time = 7 ;// when bus journey is going to start ~ datetime format 
+	string travell_stop_date_time = 8 ;// when bus journey is going to stop ~ datetime format
+	string ticket_booked_date_time = 9 ;// when bus ticket was booked ~ datetime format
+	string source_city_name = 10 ;// city name from bus is originating
+	string destination_city_name = 11 ;// city name to which bus is going 
+	string source_city_voyager_id = 12 ;// source voyager id 
+	string destination_city_voyager_id = 13 ;// destination voyager id
+	string travell_duration = 14 ;// travell time taken by bus
+	string bus_type = 15 ;// what type of bus it is , ac , non - ac , sleeper , semi-sleeper 
+	string mobile_ticket = 16 ;// if ticket is mobile ticket or not 
+	string tracking_enabled = 17 ;// if tracking is enabled or not 
+	string boarding_point_name = 18 ;// exact boarding point name for bus
+	string departure_point_name = 19 ;// exact departure point name for bus
+	string cancellation_policy_url = 20 ;// open this url/link to check cancellation policy
+	int32 privacy_flag = 21 ;// privacy flag = 1 means private , privacy flag = 0 means public and privacy flag = -1 for invalid 
+	string traveller_name = 22 ;// name of traveller for bus like orange tours and travell , morning stars
+	string ugcId = 23 ;// ugc id to check review etc .
+	bool is_ticket_refundable = 24 ;// if false that means ticket is non refundable and vice-versa
+	bool is_ticket_cancellable = 25 ;// if false that means you cannot cancel your ticket
+	string ticket_type = 26; // show ticket type tt value 
+	string email_id = 27; // email id with which booking is created 
+	string mobile = 28; // mobile no with which booking is created 
+	string booking_id = 29 ; // booking id for this booking 
+	string print_pdf_url = 30 ; // print pdf url for bus booking 
+	string bus_operator_name = 31 ; // provide bus operator name 
+	repeated string amenities = 32 ;// amenities like what all feature bus has
+	repeated string boarding_point_contact_number = 33 ;// contact number for boarding point 
+	repeated string seat_selected = 34 ;// list of string to show seat selected
+	repeated BusTravellerDetails traveller_details = 35 ;// list of traveller details 
+	BusPaymentMap refund_summary = 36 ;// dictionary showing full and final refund summary
+	repeated BusPaymentMap refund_summary_breakup = 37 ;// list of dictionary showing individual breakup of refund fare
+	BusPaymentMap amount_paid_summary = 38 ;// dictionary showing full and final amount paid summary
+	repeated BusPaymentMap amount_paid_breakup = 39 ;// list of dictionary showing individual breakup of amount customer
+	BusPaymentMap amount_paid = 40 ;// dict showing full and final amount paid without currency
+	int32 business_flag = 41; //business flag = 1 means business booking , else personal booking
+	string boarding_point_time = 42; //passenger boardin point time 
+	string arrival_point_name = 43 ;// exact arrival point name for bus
+}
+
+message BusTravellerDetails{
+	string title = 1 ;// title of customer ~ Mr , Ms , Mrs , Master
+	string first_name = 2 ;// first name of customer 
+	string last_name = 3 ;// last name of customer 
+	string seat_number = 4 ;// seat no of customer
+	string email_id = 5 ;// email id of customer 
+	string mobile_no = 6 ;// mobile number of customer
+	string age = 7 ;// age of customer 
+}
+
+message BusPaymentMap{
+	string key = 1 ;// key denotes description of values like base price , tax , discount , gocash , gocash + etc 
+	string value = 2 ;// value of corresponding key
+	string currency = 3 ;// currency can be INR symbol etc
+}
+
+/*
+
+extra keys which i think should be there at middleware side - 
+1.list of drop points , boarding points so that customer can check from where all he/she can board the bus if he is going to miss his bus
+   this should also include information of all address in brief with contact number
+2.we need to add running status i;e bus tracking . This will be feasible only for bus which have tracking enabled .
+
+please check the list and tell/add if any thing is missing .
+In future apart from mobile there will be many consumer for middleware and these api should cater needs for all .
+
+*/

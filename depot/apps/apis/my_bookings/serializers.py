@@ -3,29 +3,6 @@
 from rest_framework import serializers
 
 
-class MyBookingsSerializer(serializers.Serializer):
-    """MyBooking Serializer."""
-
-    primary_id = serializers.IntegerField()
-    b_id = serializers.CharField()
-    p_id = serializers.CharField()
-    b_db = serializers.CharField()
-    b_fd = serializers.CharField()
-    status = serializers.CharField()
-    payment = serializers.JSONField()
-    promos = serializers.CharField()
-    pnr = serializers.CharField()
-    u_id = serializers.CharField()
-    SKUs = serializers.JSONField()
-    dt = serializers.JSONField()
-    tr_d = serializers.JSONField()
-    rfs = serializers.JSONField()
-    rfm = serializers.JSONField()
-    ypm = serializers.JSONField()
-    yps = serializers.JSONField()
-    yp = serializers.JSONField()
-
-
 class MyBookingSerializer(serializers.Serializer):
     status = serializers.CharField()
     payment_id = serializers.CharField()

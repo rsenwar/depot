@@ -1,4 +1,4 @@
-"""Crystal Project Settings."""
+"""Depot Project Settings."""
 # pylint: disable=wildcard-import
 
 import os

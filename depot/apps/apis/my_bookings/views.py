@@ -26,7 +26,7 @@ from apps.apis.my_bookings.mybooking_pb2 import BusMyBookingApiData
 from apps.apis.my_bookings.permissions import MyBookingsPermission
 
 from apps.apis.my_bookings.serializers import MyBookingSerializer
-#from apps.app_helpers import kafka_helper
+from apps.app_helpers import kafka_helper
 from apps.goibibo.models import PaymentDetails, User, CustomUserProfile
 from apps.app_constants import bus_constants
 
@@ -170,7 +170,6 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
 
         """
         # pylint: disable=useless-super-delegation
-        import pdb; pdb.set_trace()
         smart_newrelic.capture_request_params()
         user_id = request.GET.get('u_id', 0)
         queryset = self.get_queryset()
@@ -186,12 +185,12 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
 
     @staticmethod
     def my_bookings_data_from_queryset(queryset, **kwargs):
-        """Get my_stays data from queryset."""
+        """Get my_bookings data from queryset."""
         return MyBookings.get_bus_booking_data(queryset, **kwargs)
 
     @staticmethod
     def my_bookings_data(payobj):
-        """Get my_stays data from queryset."""
+        """Get my_bookings data from queryset."""
         return MyBookings.get_bus_booking_data(payobj)
 
     def handle_exception(self, exc):
@@ -295,7 +294,7 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
 
     @action(detail=False, methods=['GET'], url_path='kafka-push')
     def push_proto_to_kafka(self, request, version, *args, **kwargs):
-        """Push to kafka for my_stays - default:(proto).
+        """Push to kafka for mybookings - default:(proto).
 
         Returns a list of all the existing bookings for the user specified by
         `booking_ref` and format to push in kafka can be passed with parameter push_format.
@@ -431,7 +430,7 @@ class MyBookingsBackwardViewSet(MyBookingsViewSet):
 
 
 class MyBookingsKafka(View):
-    """My Stays Kafka push."""
+    """My Bookings Kafka push."""
 
     def get(self, request):     # pylint: disable=no-self-use
         """Push to kafka my booking details.
@@ -451,14 +450,14 @@ class MyBookingsKafka(View):
         resp_format = request.GET.get('format', 'proto')
         if booking_ref:
             # data = {'booking_ref': booking_ref, 'format': resp_format}
-            my_stays_list = MyBookingsViewSet.as_view({'get': 'list'})(request)
+            mybookings_list = MyBookingsViewSet.as_view({'get': 'list'})(request)
             if resp_format == 'proto':
                 proto_renderer_obj = ProtoRenderer()
                 proto_renderer_obj.proto_model = BusMyBookingApiData
-                response = proto_renderer_obj.render(my_stays_list.data)
+                response = proto_renderer_obj.render(mybookings_list.data)
             else:
-                response = JSONRenderer().render(my_stays_list.data)
-            if my_stays_list.status_code == 200:
+                response = JSONRenderer().render(mybookings_list.data)
+            if mybookings_list.status_code == 200:
                 resp = kafka_helper.push_to_kafka_asynchronous(MY_BOOKINGS_MIDDLEWARE_KAFKA,
                                                                response)
                 logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
@@ -468,8 +467,8 @@ class MyBookingsKafka(View):
             else:
                 logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
                             booking_ref, MY_BOOKINGS_MIDDLEWARE_KAFKA, "failed-response")
-                msg = my_stays_list.data
-                status_code = my_stays_list.status_code
+                msg = mybookings_list.data
+                status_code = mybookings_list.status_code
         else:
             logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
                         booking_ref, MY_BOOKINGS_MIDDLEWARE_KAFKA, "failed - bad request")

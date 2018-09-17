@@ -1,4 +1,4 @@
-"""Production settings for crystal project."""
+"""Production settings for depot project."""
 # pylint: disable=unused-wildcard-import
 
 from depot_proj.settings import base as base_settings
@@ -81,4 +81,9 @@ DATABASES = {
 
 }
 # ***** END DATABASE CONFIGURATION
+
+# ****************** KAFKA CONFIGURATION ************************************
+KAFKA_BROKERS = "kafka01.prod.goibibo.com:9092,kafka02.prod.goibibo.com:9092," \
+                "kafka03.prod.goibibo.com:9092"
+# ***************** END KAFKA CONFIGURATION *********************************
 

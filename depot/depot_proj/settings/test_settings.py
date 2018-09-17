@@ -1,4 +1,4 @@
-"""Test settings for crystal project."""
+"""Test settings for depot project."""
 # pylint: disable=unused-wildcard-import
 import os
 from depot_proj.settings.base import *    # noqa: F403 pylint: disable=wildcard-import

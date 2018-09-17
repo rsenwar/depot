@@ -18,7 +18,7 @@ logger = logging.getLogger('depot')
 
 
 class IndexView(View):
-    """Index Page for Crystal project."""
+    """Index Page for Depot project."""
 
     def get(self, request):
         """Return root function."""

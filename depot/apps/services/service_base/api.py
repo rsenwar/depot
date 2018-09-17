@@ -43,7 +43,7 @@ class ServiceBase(object):
         self.action_path = ''
         self.resp = {'success': False, 'data': None, 'message': '',
                      'datafrom': self.__class__.__name__, 'status_code': 'EEE'}
-        self.logger = logging.getLogger("crystal")
+        self.logger = logging.getLogger("depot")
         self.service_configs = service_configs
         self.log_request = True
         self.log_response = True
