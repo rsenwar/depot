@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from depot_proj.settings.logging_settings import (L_FORMATTERS, L_FILTERS, L_HANDLERS_PROD,L_LOGGERS_PROD)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +50,8 @@ THIRD_PARTY_APPS = [
     'rest_framework_swagger',
 ]
 
-LOCAL_APPS = [
+LOCAL_APPS = ['apps',
+'celery_app.apps.CeleryAppConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -73,14 +75,22 @@ ROOT_URLCONF = 'depot_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(PROJECT_ROOT, 'www/templates'),
+        ],
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ]),
             ],
         },
     },
@@ -225,72 +235,34 @@ from django.utils.log import DEFAULT_LOGGING    # pylint: disable=wrong-import-p
 from lib import smartlogging    # pylint: disable=wrong-import-position
 
 # ***** LOGGING CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/topics/logging/#filters
-
-L_FILTERS = DEFAULT_LOGGING['filters']
-
-# See: https://docs.djangoproject.com/en/dev/topics/logging/#formatters
-L_FORMATTERS = {
-    'all_details': {
-        'format': '%(asctime)s %(levelname)s %(process)d|%(thread)d '
-                  '%(name)s.%(funcName)s():%(lineno)d %(message)s'
-    },
-    'root_format': {
-        'format': '%(asctime)s  %(levelname)s  %(name)s '
-                  ' %(funcName)s %(message)s'
-    },
-    'simple': {
-        'format': '%(asctime)s %(levelname)s %(message)s'
-    },
-    'console': {
-        # exact format is not important, this is the minimum information
-        'format': '%(asctime)s %(levelname)-8s %(name)-12s %(message)s',
-    },
-    'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': L_FORMATTERS,
+    'filters': L_FILTERS,
+    'handlers': L_HANDLERS_PROD,
+    'loggers': L_LOGGERS_PROD,
 }
-
-# See: https://docs.djangoproject.com/en/dev/topics/logging/#handlers
-L_HANDLERS = {
-    'default_handler': {
-        # file-based
-        'level': 'INFO',
-        'formatter': 'all_details',
-        'class': 'logging.FileHandler',
-        'filename': '/logs/depot_apps.log',
-    },
-    'stats_handler': {
-        # file-based
-        'level': 'ERROR',
-        'formatter': 'all_details',
-        'class': 'logging.FileHandler',
-        'filename': '/logs/depot_apps_stats.log',
-    },
-    # 'sentry': {
-    #     'level': 'ERROR',
-    #     'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-    # },
-    'mail_admins': {
-        'level': 'ERROR',
-        'class': 'django.utils.log.AdminEmailHandler',
-        'filters': ['require_debug_true']
-    },
-    'null': {
-        'class': 'logging.NullHandler',
-    },
-    'console': {
-        'class': 'logging.StreamHandler',
-        'formatter': 'console',
-    },
-    'django.server': DEFAULT_LOGGING['handlers']['django.server'],
-}
-
-L_ACTIVE_HANDLERS = [
-    'default_handler', 'stats_handler',
-]
-
-# See: https://docs.djangoproject.com/en/dev/topics/logging/#loggers
-# The loggers have default level set at DEBUG on all environments. This will
-# get filtered out at the handler level.
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # ***** END LOGGING CONFIGURATION
+
+# *********** CELERY CONFIGURATION ********************************
+# Celery application definition
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['pickle', 'json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TASK_ROUTES = {
+# }
+
+# CELERY_IMPORTS = []
+# CELERY_TIMEZONE = TIME_ZONE
+# CELERY_ENABLE_UTC = False
+
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+
+# CELERY_QUEUES = {'testcelery': {'binding_key': 'testcelery'}}
+# CELERY_DEFAULT_EXCHANGE = 'testcelery'
+# CELERY_DEFAULT_ROUTING_KEY = 'testcelery'
+# CELERY_DEFAULT_QUEUE = 'testcelery'
+# *********** END CELERY CONFIGURATION ****************************
