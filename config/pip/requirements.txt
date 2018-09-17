@@ -1,0 +1,49 @@
+-c constraints.txt
+# Django
+Django
+
+# Django Rest Framework
+djangorestframework
+django-filters
+
+# Database clients or wrappers
+mysqlclient
+redis
+django-redis
+
+# JsonEncoders
+simplejson
+ujson
+
+# NewRelic
+newrelic==3.2.0.91
+
+# Requests and dependency
+requests
+
+# pytest, pytest-django and plugins
+pytest
+pytest-django
+pytest-xdist
+pytest-cov
+pytest-pep8
+pytest-flakes
+pylint
+pylint-django
+
+# proto3
+protobuf
+./outside_pypi/dict_to_proto3_to_dict-master.zip
+
+# gevent
+gevent
+
+# Documentation
+django-rest-swagger
+Markdown
+
+# boto3
+boto3
+
+# uwsgi for server
+uwsgi

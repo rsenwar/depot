@@ -15,6 +15,12 @@ INSTALLED_APPS += [     # noqa: F405
     'apps.goibibo',
 ]
 LOCAL_HOST = 'localhost'
+HOST_NAME = 'depot.local.goibibo.com'
+PORT = os.environ.get("RUN_PORT", '8009')
+if PORT:
+    HOST = '{}:{}'.format(HOST_NAME, PORT)
+else:
+    HOST = HOST_NAME
 
 DATABASE_ROUTERS = ['depot_proj.db_router.ApplicationTestRouter']
 
@@ -62,9 +68,13 @@ KAFKA_BROKERS = '%s:9092' % LOCAL_HOST
 
 
 # *************** FIXTURE CONFIGURATION **************************************
-FIXTURE_DIRS = [
-    PROJECT_ROOT + '/data/fixtures/',   # noqa: F405
-]
+#FIXTURE_DIRS = [
+#    PROJECT_ROOT + '/data/fixtures/',   # noqa: F405
+#]
+FIXTURE_DIRS = (
+    os.path.join(PROJECT_ROOT, "data/fixtures/", ),
+)
+
 # *************** END FIXTURE CONFIGURATION **********************************
 
 USE_TZ = False

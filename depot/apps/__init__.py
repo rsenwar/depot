@@ -1,0 +1,1 @@
+"""Apps module which contains all the python applications."""

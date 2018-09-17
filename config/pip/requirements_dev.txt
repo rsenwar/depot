@@ -1,0 +1,18 @@
+-c constraints.txt
+-r requirements.txt
+# ipython setup
+ipython
+
+#Extra : not used yet
+# httpie==0.9.9
+
+# jupyter Notebook
+django-extensions
+jupyter
+
+# django-debug-toolbar
+django-debug-toolbar
+
+
+
+

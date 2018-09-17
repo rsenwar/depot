@@ -1,0 +1,7 @@
+syntax = 'proto3';
+
+message Exception {
+    string detail = 1;
+    bool success = 2;
+}
+

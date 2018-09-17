@@ -1,0 +1,2 @@
+# pycurl
+pycurl==7.43.0.1 --install-option="--with-nss"

@@ -1,0 +1,62 @@
+py.test -v --pep8 --flakes --cov-config depot/.coveragerc --cov=depot depot/tests/apps/services/
+
+
+MODULE_LIST = "depot"
+
+# PEP8 FLAKES
+# /usr/local/python3/bin/py.test -v --pep8 --flakes --junitxml=/tmp/tests.xml --cov-config depot/.coveragerc --cov=depot
+
+# /usr/local/python3/bin/py.test -v --cov-config depot/.coveragerc --junitxml=/tmp/tests.xml --cov=depot depot
+
+/usr/local/python3/bin/py.test -v depot
+
+# /usr/local/python3/bin/py.test -v --pylint --pylint-rcfile=depot/pylintrc --junitxml=/tmp/tests.xml --cov-config depot/.coveragerc --cov=depot
+
+/usr/local/python3/bin/pylint depot
+
+cd /usr/local/goibibo/depot/depot
+
+# Generate pylint report for jenkins Violations plugin to graph
+/usr/local/python3/bin/pylint  ${MODULE_LIST} | tee pylint.out
+
+# Generate pylint report for github comments (needs different format than earlier report
+/usr/local/python3/bin/pylint --msg-template='{path}:{line}:{column} [{msg_id}] {msg}' ${MODULE_LIST} > pylint_report.txt
+
+
+
+# ####### docker commands #######
+docker build --build-arg DEPOT_BUILD_ENV=dev -t depot:latest .
+
+docker run -p 8088:80 -it -e CURR_ENV=dev -d depot:latest
+
+docker exec -it {{container_id}} /bin/bash
+
+docker ps -a
+docker rmi {imageid}
+docker rm -f {containerid}
+
+# ############# docker-compose commands ################
+
+docker-compose -f dev.yml -f test.yml up
+
+$ docker-compose build
+$ docker-compose -f production.yml up -d
+$ docker-compose run web /usr/local/bin/python manage.py migrate
+
+# ########### proto command to create pb2 file ##############
+# Go to the directory where want to store pb2 file
+# protoc --python_out="{destination}" "{proto_file}"
+# Example::
+protoc --python_out=. mybooking.proto
+
+
+### TO delete all compiled pyc files ########
+find . -name \*.pyc -delete
+
+
+##### to run celery in local ########
+# Open a terminal window, Run Celery with in your project root where manage.py lives:
+$ export DJANGO_SETTINGS_MODULE='depot_proj.settings.local'
+$ celery -A celery_app worker -l info
+## Celery beat
+$ celery -A celery_app beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler

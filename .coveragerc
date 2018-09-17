@@ -1,0 +1,48 @@
+# .coveragerc to control coverage.py
+[run]
+branch = True
+# source = depot
+omit =  depot/tests/*
+        depot/depot_proj/settings/*
+        depot/depot_proj/wsgi.py
+        depot/manage_local.py
+        depot/manage.py
+        */service_configs.py
+        */urls.py
+        depot/apps/goibibo/models/*
+        depot/lib/extras/*
+        depot/lib/aws_ssm_param_store.py
+        depot/crystal_proj/db_router.py
+
+
+#depot/snippets/*
+
+[report]
+show_missing = True
+skip_covered = True
+ignore_errors = True
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+
+    # Don't complain about missing debug-only code:
+    def __repr__
+    if self\.debug
+    if settings\.DEBUG
+    def get_test_main
+    def get_api_main
+
+    # Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+
+    # Don't complain if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+
+[html]
+directory = /tmp/htmlcov
+title = "Depot Test Coverage Report"
+
+
