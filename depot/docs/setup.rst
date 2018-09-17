@@ -57,7 +57,7 @@ Local Setup:
 
      ::
 
-         $ git clone https://github.com/goibibo/crystal.git
+         $ git clone https://github.com/goibibo/depot.git
 
     2. Install ``python3`` (if it is not already present in your system)
        and check the version of python3:
@@ -66,20 +66,20 @@ Local Setup:
 
         $ python3 -V
 
-    3. Go to ``crystal`` directory
+    3. Go to ``depot`` directory
 
      ::
 
-        $ cd crystal
+        $ cd depot
 
     4. Create virtual environment
 
      .. code:: shell
 
-        $ python3 -m venv venv_crystal
+        $ python3 -m venv venv_depot
         $ #(or using virtualenv)
-        $ virtualenv -p python3 venv_crystal
-        $ source venv_crystal/bin/activate
+        $ virtualenv -p python3 venv_depot
+        $ source venv_depot/bin/activate
 
     5. Install python packages
 
@@ -89,19 +89,19 @@ Local Setup:
         (for additional modules)
         $ pip install -r config/pip/requirements_dev.txt
 
-    6. Create a database named ``crystal`` in ``mysql``. [if it is not present in your database.]
+    6. Create a database named ``depot`` in ``mysql``. [if it is not present in your database.]
 
      ::
 
         $ mysql -u root -p
 
-        mysql> CREATE DATABASE crystal;
+        mysql> CREATE DATABASE depot;
 
     7. Copy local settings and change settings for ``DATABASE`` and ``CACHES``.
 
      .. code:: shell
 
-        $ cp crystal_proj/settings/local.py.dist  crystal/crystal_proj/settings/local.py
+        $ cp depot_proj/settings/local.py.dist  depot/depot_proj/settings/local.py
 
     8. Run migrations to create ``django-framework`` tables or dump the database.
 
