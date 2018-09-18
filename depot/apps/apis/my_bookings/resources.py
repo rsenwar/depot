@@ -31,7 +31,7 @@ class MyBookings(object):
         """Get my_bookings data for list of payment_objects."""
         for bb_obj in queryset:
             try:
-                yield MyBookings.get_bus_booking_data(bb_obj)
+                yield MyBookings.get_bus_booking_data(bb_obj, user_id)
             except Exception:
                 smart_newrelic.push_transaction_exception()
                 logger.exception("Exception in MyBookings.get_my_bookings_data")
@@ -132,7 +132,8 @@ class MyBookings(object):
                 data['amount_paid_breakup'] = ypm
                 data['amount_paid'] = yp
                 data['business_flag'] = 0 if bj.get('gst_data', {}).get('profile', 'personal') == 'personal' else 1
-            except:
+            except Exception as ex:
+                logger.exception("%s\t%s", "get_bus_booking_data", ex)
                 data = {}
             if data != {}:
                 json_result.append(data)
@@ -146,8 +147,7 @@ class MyBookings(object):
                       "to refund": "CANCELLED",
                       "pending": "CANCELLED",
                       "refunded": "CANCELLED",
-                      "charged": "OK"
-                      }
+                      "charged": "OK"}
         refund_breakup = []
         rfs = {}
         gocash = gocashP = cash = credits = 0

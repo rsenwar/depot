@@ -17,7 +17,6 @@ sys.path.append(os.path.dirname(__file__))
 
 @pytest.fixture(scope='session')
 def django_db_setup(django_db_keepdb, django_db_blocker):
-    import pdb; pdb.set_trace()
     from pytest_django.fixtures import _disable_native_migrations
     _disable_native_migrations()
     settings.DATABASES['default'] = {

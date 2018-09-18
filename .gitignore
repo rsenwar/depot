@@ -89,7 +89,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
-venv_crystal/
+venv_depot/
 
 # Spyder project settings
 .spyderproject
