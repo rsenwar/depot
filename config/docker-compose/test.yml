@@ -1,0 +1,17 @@
+version: "1.0"
+services:
+  depot:
+    image: depot:latest
+    build:
+      context: ../../
+      args:
+        DEPOT_BUILD_ENV: dev
+      dockerfile: DockerfileDevelopment
+    environment:
+      - CURR_ENV=dev
+    volumes:
+      - ../../:/usr/local/goibibo/depot
+    entrypoint:
+      - /bin/bash
+      - -c
+      - "/usr/local/python3/bin/py.test -v depot"

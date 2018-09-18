@@ -1,0 +1,19 @@
+version: "1.0"
+services:
+  depot:
+    image: depot:latest
+    environment:
+      - CURR_ENV=dev
+    restart: always
+    build:
+      context: ../..
+      args:
+        DEPOT_BUILD_ENV: dev
+      dockerfile: DockerfileDevelopment
+
+    volumes:
+      - ../../:/usr/local/goibibo/depot
+      - /logs/:/logs/
+    ports:
+      - "8088:8088"
+    command: /usr/local/python3/bin/python3.6 /usr/local/goibibo/depot/depot/manage.py runserver 0.0.0.0:8088

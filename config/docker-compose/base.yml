@@ -1,0 +1,16 @@
+version: "1.0"
+services:
+  depot:
+    image: depot:latest
+    restart: always
+    build:
+      context: ../..
+      args:
+        DEPOT_BUILD_ENV: prod
+      dockerfile: Dockerfile
+    environment:
+      - CURR_ENV=prod
+    volumes:
+      - ./:/usr/local/goibibo/depot
+    ports:
+      - "80:80"
