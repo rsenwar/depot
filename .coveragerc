@@ -12,7 +12,7 @@ omit =  depot/tests/*
         depot/apps/goibibo/models/*
         depot/lib/extras/*
         depot/lib/aws_ssm_param_store.py
-        depot/crystal_proj/db_router.py
+        depot/depot_proj/db_router.py
 
 
 #depot/snippets/*

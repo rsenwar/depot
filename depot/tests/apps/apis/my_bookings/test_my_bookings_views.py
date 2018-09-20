@@ -16,7 +16,6 @@ def test_viewset_client_user():
     url = '/apis/v1/my-bookings/'
     data = dict(page_size=1, page=2, u_id=13, all=1, secret=bus_constants.MYBOOKING_TOKEN)
     response = client.get(url, data)
-    #import pdb;pdb.set_trace()
     assert response.status_code == 200
     assert response.data['count'] == 3
     assert len(response.data['data']) == 1
@@ -32,7 +31,6 @@ def test_viewset():
     request = factory.get(url, data)
     view = MyBookingsViewSet.as_view({'get': 'list'})
     response = view(request)
-    import pdb;pdb.set_trace()
     assert response.status_code == 200
     assert response.data['count'] == 1
     assert len(response.data['data']) == 1
@@ -59,7 +57,6 @@ def test_viewset_client_user_not_all_failure():
     url = '/apis/v1/my-bookings/'
     data = dict(page_size=5, page=2, u_id=18, secret=bus_constants.MYBOOKING_TOKEN)
     response = client.get(url, data)
-    #import pdb;pdb.set_trace()
     assert response.status_code == 404
     assert response.data['count'] == 0
     assert len(response.data['data']) == 0

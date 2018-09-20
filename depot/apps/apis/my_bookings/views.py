@@ -219,10 +219,6 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
         """
         queryset = PaymentDetails.objects.none()
         query_params = dict(self.request.query_params.items())
-        #if not 'page' in query_params:
-        #    query_params['page'] = 0
-        #if not 'page_size' in query_params:
-        #    query_params['page'] = settings.page_size
         exclude_status = ['new']
         all_bookings = query_params.get('all_bookings', 'false')
         if all_bookings == "true":
@@ -460,17 +456,17 @@ class MyBookingsKafka(View):
             if mybookings_list.status_code == 200:
                 resp = kafka_helper.push_to_kafka_asynchronous(MY_BOOKINGS_MIDDLEWARE_KAFKA,
                                                                response)
-                logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
+                logger.info("Bus protobuf push to kafka hit %s for new topic %s status %s",
                             booking_ref, MY_BOOKINGS_MIDDLEWARE_KAFKA, resp)
                 msg = "data push to kafka status %s." % resp
                 status_code = drf_status.HTTP_200_OK
             else:
-                logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
+                logger.info("Bus protobuf push to kafka hit %s for new topic %s status %s",
                             booking_ref, MY_BOOKINGS_MIDDLEWARE_KAFKA, "failed-response")
                 msg = mybookings_list.data
                 status_code = mybookings_list.status_code
         else:
-            logger.info("Hotels protobuf push to kafka hit %s for new topic %s status %s",
+            logger.info("Bus protobuf push to kafka hit %s for new topic %s status %s",
                         booking_ref, MY_BOOKINGS_MIDDLEWARE_KAFKA, "failed - bad request")
             msg = "Please provide booking reference."
             status_code = drf_status.HTTP_400_BAD_REQUEST

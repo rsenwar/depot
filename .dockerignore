@@ -39,4 +39,4 @@ _build/
 */migrations/
 **/.pytest_cache
 
-venv_crystal/
+venv_depot/
