@@ -40,7 +40,7 @@ MY_BOOKINGS_MIDDLEWARE_KAFKA_F1 = 'MYBOOKINGS_BUS'
 
 
 class MyBookingsViewSchema(AutoSchema):
-    """My stays schema."""
+    """My bookings schema."""
 
     version = coreapi.Field(
         "version", required=True, location="path",
@@ -92,7 +92,7 @@ class MyBookingsViewSchema(AutoSchema):
 
 
 class MyBookingsPagination(pagination.PageNumberPagination):
-    """MyStays Pagination."""
+    """MyBookings Pagination."""
 
     page_size_query_param = 'page_size'
     page_query_param = 'page'
@@ -113,11 +113,11 @@ class MyBookingsPagination(pagination.PageNumberPagination):
 
 
 class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
-    """My-stays My-booking.
+    """My-bookings.
 
-    My Stays list view for a given user_id, mobile or booking_ref.
+    My booking list view for a given user_id, mobile or booking_ref.
 
-    * Requires token authentication.
+    * Requires secret key.
     * Only active users are able to access this view.
 
     """
@@ -275,7 +275,7 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
         return queryset
 
     def clone_my_sbookings_request_kafka_push(self, request):
-        """Clone my stays request kafka push."""
+        """Clone my bookings request kafka push."""
         request_new = clone_request(request, 'GET')
         push_format = request.GET.get('push_format', 'proto')
         new_get_data = QueryDict('', mutable=True)
@@ -338,7 +338,7 @@ class MyBookingsViewSet(viewsets.GenericViewSet, ProtoAPIView):
     @action(detail=False, methods=['GET'], url_path='kafka-push-f1',
             renderer_classes=[JSONRenderer, ])
     def push_to_kafka_f1(self, request, version, *args, **kwargs):
-        """Push to MYBOOKINGS_HOTELS kafka.
+        """Push to MYBOOKINGS_BUS kafka.
 
         Args:
             request:
