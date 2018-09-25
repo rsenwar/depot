@@ -112,4 +112,4 @@ venv_depot/
 
 */logs/*
 depot/depot_proj/settings/dev.py
-depot/depot_proj/settings/local.py
+#depot/depot_proj/settings/local.py
