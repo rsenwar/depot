@@ -33,7 +33,7 @@ pylint-django
 
 # proto3
 protobuf
-./outside_pypi/dict_to_proto3_to_dict-master.zip
+./config/outside_pypi/dict_to_proto3_to_dict-master.zip
 
 # gevent
 gevent
@@ -47,3 +47,10 @@ boto3
 
 # uwsgi for server
 uwsgi
+
+# kafka
+kafka-python
+
+# celery, gevent
+celery[redis,gevent]
+django-celery-beat

@@ -40,7 +40,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'depot',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         'HOST': LOCAL_HOST,
         'PORT': '',
         'TEST': {
@@ -52,7 +52,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travelibibo',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         'HOST': LOCAL_HOST,
         'PORT': '',
         'TEST': {
@@ -64,7 +64,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travelibibo',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         'HOST': LOCAL_HOST,
         'PORT': '',
         'TEST': {

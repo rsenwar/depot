@@ -61,22 +61,31 @@ WORKDIR /usr/local/goibibo/depot
 
 EXPOSE 80
 
-COPY dockerconfig/supervisord.conf /etc/supervisord.conf
-COPY dockerconfig/supervisord /etc/rc.d/init.d/supervisord
-COPY dockerconfig/services.conf /etc/supervisord.d/services.conf
-COPY dockerconfig/etc/nginx.conf /etc/nginx/nginx.conf
-COPY dockerconfig/${DEPOT_BUILD_ENV}/newrelic_depot.ini /etc/newrelic/newrelic_depot.ini
-COPY dockerconfig/${DEPOT_BUILD_ENV}/depot.conf /etc/nginx/conf.d/depot.conf
-COPY dockerconfig/${DEPOT_BUILD_ENV}/uwsgi-depot.ini /etc/uwsgi-depot.ini
+RUN pwd
 
 COPY ./ /usr/local/goibibo/depot
 
-COPY dockerconfig/wsgi.py /usr/local/goibibo/depot/depot/depot_proj/wsgi.py
+
+RUN ls
+
+RUN pwd
+
+COPY config/docker/supervisord.conf /etc/supervisord.conf
+COPY config/docker/supervisord /etc/rc.d/init.d/supervisord
+COPY config/docker/services/depot_services.conf /etc/supervisord.d/services.conf
+COPY config/docker/etc/nginx.conf /etc/nginx/nginx.conf
+COPY config/docker/${DEPOT_BUILD_ENV}/newrelic_depot.ini /etc/newrelic/newrelic_depot.ini
+COPY config/docker/${DEPOT_BUILD_ENV}/depot.conf /etc/nginx/conf.d/depot.conf
+COPY config/docker/${DEPOT_BUILD_ENV}/uwsgi-depot.ini /etc/uwsgi-depot.ini
+
+#COPY ./ /usr/local/goibibo/depot
+
+COPY config/docker/wsgi.py /usr/local/goibibo/depot/depot/depot_proj/wsgi.py
 
 RUN \
     /usr/local/python3/bin/pip3.6 install --upgrade pip && \
     if [ "$DEPOT_BUILD_ENV" == "dev" ]; then /usr/local/python3/bin/pip3.6 install -r config/pip/requirements_dev.txt; else /usr/local/python3/bin/pip3.6 install -r config/pip/requirements.txt; fi && \
-    /usr/local/python3/bin/pip3.6 install -r config/pip/requirements_options.txt && \
+    /usr/local/python3/bin/pip3.6 install -r config/pip/requirement_options.txt && \
     /usr/local/python3/bin/python3.6 /usr/local/goibibo/depot/depot/manage.py collectstatic && \
     chmod 755 /etc/rc.d/init.d/supervisord
 

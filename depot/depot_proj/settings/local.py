@@ -9,11 +9,12 @@ SITE_ID = 1
 INTERNAL_IPS = ['127.0.0.1', ]
 API_TYPE = 'test'
 ENVIRONMENT_NAME = "dev"
-HOST_NAME = 'depot.local.goibibo.com'
-GOIBIBO_HOST = 'http://hare.local.goibibo.com:8081'
-GOCASH_HOST = 'http://hare.local.goibibo.com:8081'
+HOST_NAME = '127.0.0.1'
+LOCAL_HOST = 'host.docker.internal'
+GOIBIBO_HOST = 'http://depot.local.goibibo.com:8009'
+GOCASH_HOST = 'http://depot.local.goibibo.com:8081'
 VOYAGER_HOST = 'http://voyager.goibibo.com'
-
+ALLOWED_HOSTS = ['.' + HOST_NAME, '.' + HOST_NAME + '.',]
 SESSION_COOKIE_DOMAIN = '.depot.local.goibibo.com'
 PORT = os.environ.get("RUN_PORT", '8009')
 if PORT:
@@ -33,17 +34,17 @@ if 'debug_toolbar' in INSTALLED_APPS:
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     ]
 
-LOCAL_HOST = 'localhost'
+# LOCAL_HOST = 'localhost'
 DEPOT_REDIS_HOST = LOCAL_HOST
 
 DB_FILES_LOCATION = PROJECT_ROOT + '/data/'
-DATABASES = {
+DATABASES1 = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'depot',
         'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'PASSWORD': '',
+        'HOST': 'LOCAL_HOST',
         'PORT': ''
     },
     'goibibo_master': {
@@ -51,7 +52,7 @@ DATABASES = {
         'NAME': 'travelibibo',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': 'LOCAL_HOST',
         'PORT': ''
     },
     'goibibo_slave': {
@@ -59,10 +60,64 @@ DATABASES = {
         'NAME': 'travelibibo',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': 'LOCAL_HOST',
         'PORT': ''
     }
 
+}
+
+DATABASES={
+        'default':{
+                'NAME':'goibibo',
+                'ENGINE':'django.db.backends.mysql',
+                'USER':'gouser',
+                'PASSWORD':'g01b1b0',
+                'HOST':'10.70.15.104',
+                'PORT':'',
+                'CONN_MAX_AGE': 60,
+#                'OPTIONS':{"autocommit": True},
+                },
+        'slave':{
+                 'NAME':'goibibo',
+                 'ENGINE':'django.db.backends.mysql',
+                 'USER':'gouser',
+                 'PASSWORD':'g01b1b0',
+                 'HOST':'10.70.15.104',
+                 'PORT':'',
+                 'CONN_MAX_AGE': 60,
+#                 'OPTIONS':{"autocommit": True},
+                 'TEST_MIRROR': 'default'
+                },
+        'stats':{
+                 'NAME':'stats',
+                 'ENGINE':'django.db.backends.mysql',
+                 'USER':'goibibo',
+                 'PASSWORD':'goibibo123',
+                 'HOST':'10.70.46.43',
+                 'PORT':'3306',
+                 'CONN_MAX_AGE': 60,
+                 'OPTIONS':{"autocommit": True},
+                 'TEST_MIRROR':'default'
+                },
+        'report': {
+                'NAME': 'goibibo',
+                'ENGINE': 'django.db.backends.mysql',
+                'USER': 'goibibo',
+                'PASSWORD': 'goibibo123',
+                'HOST': 'localhost',
+                'PORT': ''
+               },
+        'travelb2b':{
+                'NAME': 'travelb2b',
+                'ENGINE': 'django.db.backends.mysql',
+                'USER': 'phoenix',
+                'PASSWORD': 'phoenix#1',
+                'HOST': '10.70.15.104',
+                'PORT': '3306',
+                'OPTIONS': {
+                        "init_command": "SET storage_engine=INNODB"
+                }
+        }
 }
 
 

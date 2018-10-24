@@ -14,7 +14,7 @@ SITE_ID = 1
 INSTALLED_APPS += [     # noqa: F405
     'apps.goibibo',
 ]
-LOCAL_HOST = 'localhost'
+LOCAL_HOST = 'host.docker.internal'
 HOST_NAME = 'depot.local.goibibo.com'
 PORT = os.environ.get("RUN_PORT", '8009')
 if PORT:

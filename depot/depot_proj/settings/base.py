@@ -54,6 +54,8 @@ LOCAL_APPS = ['apps',
 'celery_app.apps.CeleryAppConfig',
 ]
 
+LOCAL_APPS = []
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ***** END APP CONFIGURATION

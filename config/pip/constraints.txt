@@ -1,5 +1,5 @@
 # Django
-pytz==2018.4
+#pytz==2018.4
 Django==2.0.5
 
 # Django Rest Framework

@@ -52,21 +52,24 @@ RUN \
 
 # install dependencies
 COPY config/ /usr/local/goibibo/depot/config
-RUN \
-    /usr/local/python3/bin/pip3.6 install --upgrade pip && \
-    if [ "$DEPOT_BUILD_ENV" == "dev" ]; then /usr/local/python3/bin/pip3.6 install -r config/pip/requirements_dev.txt; else /usr/local/python3/bin/pip3.6 install -r config/pip/requirements.txt; fi && \
-    /usr/local/python3/bin/pip3.6 install -r config/pip/requirements_options.txt
 
 WORKDIR /usr/local/goibibo/depot
-                                                                                                                             60,1          53%
+
+RUN \
+    /usr/local/python3/bin/pip3.6 install --upgrade pip && pwd && ls /usr/local/goibibo/depot/config/pip  && \
+    if [ "$DEPOT_BUILD_ENV" == "dev" ]; then /usr/local/python3/bin/pip3.6 install -r config/pip/requirements_dev.txt; else /usr/local/python3/bin/pip3.6 install -r config/pip/requirements.txt; fi && \
+    /usr/local/python3/bin/pip3.6 install -r config/pip/requirement_options.txt
+
+#WORKDIR /usr/local/goibibo/depot
+                                                                                                                           
 EXPOSE 8088
 
 #COPY config/docker/supervisord.conf /etc/supervisord.conf
 #COPY config/docker/supervisord /etc/rc.d/init.d/supervisord
 #COPY config/docker/services.conf /etc/supervisord.d/services.conf
 #COPY config/docker/etc/nginx.conf /etc/nginx/nginx.conf
-COPY config/docker/${DEPOT_BUILD_ENV}/newrelic_depot.ini /etc/newrelic/newrelic_depot.ini
-COPY config/docker/${DEPOT_BUILD_ENV}/newrelic_depot_celery.ini /etc/newrelic/newrelic_depot_celery.ini
+#COPY config/docker/${DEPOT_BUILD_ENV}/newrelic_depot.ini /etc/newrelic/newrelic_depot.ini
+#COPY config/docker/${DEPOT_BUILD_ENV}/newrelic_depot_celery.ini /etc/newrelic/newrelic_depot_celery.ini
 #COPY config/docker/${DEPOT_BUILD_ENV}/depot.conf /etc/nginx/conf.d/depot.conf
 #COPY config/docker/${DEPOT_BUILD_ENV}/uwsgi-depot.ini /etc/uwsgi-depot.ini
 
@@ -81,6 +84,6 @@ RUN \
 
 #CMD ["/usr/local/python3/bin/python3.6", "depot/manage.py", "runserver", "0.0.0.0:8010"]
 
-                                                                                                                             1,1           Top
+                                                                                                                         
 
 
